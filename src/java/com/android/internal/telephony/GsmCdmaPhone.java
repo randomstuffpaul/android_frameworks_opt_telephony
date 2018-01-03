@@ -731,6 +731,9 @@ public class GsmCdmaPhone extends Phone {
         if (!isPhoneTypeGsm() && r == null) {
             // to get ICCID form SIMRecords because it is on MF.
             r = mUiccController.getIccRecords(mPhoneId, UiccController.APP_FAM_3GPP);
+            if (r == null && mCdmaSubscriptionSource == CDMA_SUBSCRIPTION_NV) {
+                return DUMMY_NV_ICC_SERIAL;
+            }
         }
         return (r != null) ? r.getIccId() :
                 (mCdmaSubscriptionSource == CDMA_SUBSCRIPTION_NV) ? DUMMY_NV_ICC_SERIAL : null;
@@ -742,6 +745,9 @@ public class GsmCdmaPhone extends Phone {
         if (!isPhoneTypeGsm() && r == null) {
             // to get ICCID form SIMRecords because it is on MF.
             r = mUiccController.getIccRecords(mPhoneId, UiccController.APP_FAM_3GPP);
+            if (r == null && mCdmaSubscriptionSource == CDMA_SUBSCRIPTION_NV) {
+                return DUMMY_NV_ICC_SERIAL;
+            }
         }
         return (r != null) ? r.getIccId() :
                 (mCdmaSubscriptionSource == CDMA_SUBSCRIPTION_NV) ? DUMMY_NV_ICC_SERIAL : null;
